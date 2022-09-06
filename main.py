@@ -22,6 +22,20 @@ def incorrect_letter(letter):
     return f'[black on white]{letter}[/]'
 
 
+def verifyWord(word, list):
+    if word.lower() not in list:
+        return True
+    else:
+        return False
+
+
+def lenWord(word):
+    if len(word) != 5:
+        return True
+    else:
+        return False
+
+
 def score_guess(guess, answer):
     score = []
     for index, letter in enumerate(guess):
@@ -37,6 +51,7 @@ def score_guess(guess, answer):
 def main():
     rich.print(correct_place("welcome") + " " + correct_letter("To") +
                " " + incorrect_letter("Wordle.Py") + " ")
+
     tries = 6
 
     console = Console()
@@ -44,13 +59,24 @@ def main():
 
     while tries != 0:
         tries = tries - 1
-        user_inp = Prompt.ask("Enter your Guess: ").upper()
+        user_inp = Prompt.ask("Enter your Guess ").upper()
+
+        while verifyWord(user_inp, words):
+            console.print('Enter a valid five letter word!')
+            user_inp = Prompt.ask("Enter your Guess ").upper()
+
+        while lenWord(user_inp):
+            console.print('Enter a valid five letter word!')
+            user_inp = Prompt.ask("Enter your Guess ").upper()
+
         console.print(score_guess(user_inp, answer) + " ")
         if user_inp == answer:
-            console.print("congratulation!") 
+            console.print("Congratulation! You Guessed the Word")
             break
-        else:
-            console.print("Sorry wrong guess. The correct word is " + answer)
+
+    if tries == 0 and user_inp != answer:
+        console.print("Sorry wrong guess. The correct word is " + answer)
+
 
 if __name__ == '__main__':
     main()
