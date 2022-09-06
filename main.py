@@ -75,7 +75,7 @@ def main():
             break
 
     if tries == 0 and user_inp != answer:
-        console.print("Sorry wrong guess. The correct word is " + answer)
+        console.print("Sorry wrong guess. The correct word is " + correct_place(answer))
 
 
 if __name__ == '__main__':
