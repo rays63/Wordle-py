@@ -48,7 +48,7 @@ def score_guess(guess, answer):
     return ''.join(score)
 
 
-def main():
+def wordle():
     rich.print(correct_place("welcome") + " " + correct_letter("To") +
                " " + incorrect_letter("Wordle.Py") + " ")
 
@@ -79,4 +79,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    wordle()
